@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Menu, X, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 
 const navItems = [
   { label: "Skills", href: "#skills" },
@@ -12,6 +14,7 @@ const navItems = [
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isAdmin, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,6 +59,17 @@ const Navbar = () => {
                 {item.label}
               </button>
             ))}
+            
+            {isAdmin && (
+              <Link
+                to="/admin"
+                className="flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors"
+              >
+                <Settings className="w-4 h-4" />
+                Admin
+              </Link>
+            )}
+            
             <Button size="sm" asChild>
               <a href="mailto:mohanad.e.zidane@gmail.com">Hire Me</a>
             </Button>
@@ -88,6 +102,18 @@ const Navbar = () => {
                 {item.label}
               </button>
             ))}
+            
+            {isAdmin && (
+              <Link
+                to="/admin"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-2 text-sm text-primary py-2"
+              >
+                <Settings className="w-4 h-4" />
+                Admin Panel
+              </Link>
+            )}
+            
             <Button className="w-full" size="sm" asChild>
               <a href="mailto:mohanad.e.zidane@gmail.com">Hire Me</a>
             </Button>
