@@ -19,7 +19,7 @@ const skills = [
   {
     category: "Tools & Platforms",
     icon: Layers,
-    items: ["Informatica PowerCenter", "Databricks", "Power BI", "Python"],
+    items: ["Informatica PowerCenter", "Databricks", "Google BigQuery", "Power BI", "Python"],
   },
   {
     category: "Analytics",
